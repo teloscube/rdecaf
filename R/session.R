@@ -27,24 +27,19 @@
 }
 
 
-## Attempts to read the session from options, stops if no existing
-## session is found.
-.readSession <- function () {
-    ## Attempt to get the session:
-    session <- getOption("rdecaf.session")
-
-    ## Do we have a session?
-    if (is.null(session)) {
-        stop("No existing session found.")
-    }
-
-    ## Return the session:
-    session
-}
-
-
-## Attempts to create a new session with the provided arguments.
-.makeSession <- function (location=NULL, token=NULL, username=NULL, password=NULL, profile="default", config=.defaultConfigFilepath) {
+##' Attempts to create a new session with the provided arguments.
+##'
+##' @param location The location of the remote API base endpoint.
+##' @param token Authentication token.
+##' @param username Username.
+##' @param password Password.
+##' @param profile The profile name.
+##' @param config The configuration file path.
+##' @param save Indicates if we want to save the session.
+##' @return A session.
+##'
+##' @export
+makeSession <- function (location=NULL, token=NULL, username=NULL, password=NULL, profile="default", config=.defaultConfigFilepath, save=FALSE) {
     ## Attempt to get the profile as the base configuration if defined:
     if (!is.null(profile)) {
         ## Get the profile:
@@ -74,8 +69,10 @@
         profile$token <- .getToken(profile$location, profile$username, profile$password)
     }
 
-    ## Save the session:
-    options(rdecaf.session=profile)
+    ## Save the session if required:
+    if (save) {
+        options(rdecaf.session=profile)
+    }
 
     ## Return the session:
     profile
@@ -101,7 +98,7 @@ getSession <- function (location=NULL, token=NULL, username=NULL, password=NULL,
     }
 
     ## First, attempt to get the session:
-    session <- try(.readSession(), silent=TRUE)
+    session <- try(readSession(), silent=TRUE)
 
     ## Is it error?
     if(!inherits(session, "try-error")) {
@@ -110,8 +107,29 @@ getSession <- function (location=NULL, token=NULL, username=NULL, password=NULL,
     }
     else {
         ## Attempt to create a session:
-        .makeSession(location, token, username, password, profile, config)
+        makeSession(location, token, username, password, profile, config)
     }
+}
+
+
+##' Attempts to read the session from options
+##'
+##' Stops if no existing session is found.
+##'
+##' @return Session found.
+##'
+##' @export
+readSession <- function () {
+    ## Attempt to get the session:
+    session <- getOption("rdecaf.session")
+
+    ## Do we have a session?
+    if (is.null(session)) {
+        stop("No existing session found.")
+    }
+
+    ## Return the session:
+    session
 }
 
 

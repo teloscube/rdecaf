@@ -4,26 +4,14 @@
 \alias{getResource}
 \title{Retrieve a resource from DECAF API.}
 \usage{
-getResource(..., params = list(), location = NULL, token = NULL,
-  username = NULL, password = NULL, profile = "default",
-  config = .defaultConfigFilepath)
+getResource(..., params = list(), session = NULL)
 }
 \arguments{
 \item{...}{URL path segments.}
 
 \item{params}{Query parameters.}
 
-\item{location}{Base URL of the API.}
-
-\item{token}{Authentication token.}
-
-\item{username}{Username.}
-
-\item{password}{Password.}
-
-\item{profile}{Profile name.}
-
-\item{config}{Path to configuration file.}
+\item{session}{Session information.}
 }
 \value{
 Parsed R object for the response.
