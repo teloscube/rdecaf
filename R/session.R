@@ -39,7 +39,7 @@
 ##' @return A session.
 ##'
 ##' @export
-makeSession <- function (location=NULL, token=NULL, username=NULL, password=NULL, profile="default", config=.defaultConfigFilepath, save=FALSE) {
+makeSession <- function (location=NULL, token=NULL, username=NULL, password=NULL, profile=NULL, config=.defaultConfigFilepath, save=FALSE) {
     ## Attempt to get the profile as the base configuration if defined:
     if (!is.null(profile)) {
         ## Get the profile:

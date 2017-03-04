@@ -5,7 +5,7 @@
 \title{Attempts to create a new session with the provided arguments.}
 \usage{
 makeSession(location = NULL, token = NULL, username = NULL,
-  password = NULL, profile = "default", config = .defaultConfigFilepath,
+  password = NULL, profile = NULL, config = .defaultConfigFilepath,
   save = FALSE)
 }
 \arguments{
