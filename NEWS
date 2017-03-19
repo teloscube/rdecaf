@@ -1,0 +1,11 @@
+VERS: 2017-03-19 ------- release/0.0.1
+
+    * 2017-03-19 811a0fc [release] Version bumped to 0.0.1 (vst@vsthost.com)
+    * 2017-03-19 9e9caf2 [chore] Getting ready for the initial release (vst@vsthost.com)
+    * 2017-03-16 0b853ae [feature] Added query functions for artifacts and ledgers (vst@vsthost.com)
+    * 2017-03-04 2326098 [fix] Profile is not defaulting when making sessions (vst@vsthost.com)
+    * 2017-03-03 103e652 [fix] R version dependency changed (vst@vsthost.com)
+    * 2017-02-12 3191270 [chore] Auth, session and profile concepts are landing (vst@vsthost.com)
+    * 2017-02-04 2a23df0 [chore] Reorganising profiles and sessions (vst@vsthost.com)
+    * 2017-02-03 c369b28 [feature] Initial commit with `getResource` function (vst@vsthost.com)
+    * 2017-02-03 9c44bdb Initial commit (vst@vsthost.com)
