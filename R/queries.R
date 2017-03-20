@@ -96,3 +96,52 @@ getLedger <- function (artifact, accounts, start=NULL, end=NULL, type="commitmen
     ## Done, return the ledger:
     ledger
 }
+
+##' Returns the account identified by the given identifier.
+##'
+##' @param id Account ID
+##' @param session Session which we will retrieve the remote resource within.
+##' @return The account of interest, if found.
+##'
+##' @export
+getAccountByID <- function (id, session=NULL) {
+    getResource("accounts", id, session=session)
+}
+
+
+##' Returns the account identified by the given name.
+##'
+##' @param name Account name
+##' @param session Session which we will retrieve the remote resource within.
+##' @return The account of interest, if found.
+##'
+##' @export
+getAccountByName <- function (name, session=NULL) {
+    ## Get the search results:
+    searchResults <- getResource("accounts", params=list(name=name), session=session)$results
+
+    ## We must have exactly 1 result. Return accordingly:
+    if (length(searchResults) != 1) {
+        NULL
+    }
+    else {
+        searchResults[[1]]
+    }
+}
+
+
+##' Returns the account identified by the given identifier or name.
+##'
+##' @param idOrName Account ID or name
+##' @param session Session which we will retrieve the remote resource within.
+##' @return The account of interest, if found.
+##'
+##' @export
+getAccount <- function (idOrName, session=NULL) {
+    if (is.character(idOrName) && !.isNumeric(idOrName)) {
+        getAccountByName(idOrName)
+    }
+    else {
+        getAccountByID(idOrName)
+    }
+}
