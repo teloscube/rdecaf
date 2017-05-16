@@ -38,8 +38,8 @@ getResource <- function (..., params=list(), session=NULL) {
         stop(sprintf("%s returned a status code of '%d'.\n\n  Details provided by the API are:\n\n%s", url, status, httr::content(response, as="text")))
     }
 
-    ## Return:
-    httr::content(response)
+    ## Return (note that we are suppressing messages):
+    suppressMessages(httr::content(response))
 }
 
 
