@@ -6,7 +6,7 @@
     }
 
     ## Create the URL:
-    url <- .urlize(location, c("auth", "token"))
+    url <- .urlize(location, c("auth", "login"))
 
     ## Attempt to get token response:
     response <- httr::POST(url, body=list(username=username, password=password))
