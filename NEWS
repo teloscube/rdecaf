@@ -1,5 +1,18 @@
-VERS: 2017-03-19 ------- release/0.0.1
+VERS: 2017-07-10 ------- release/0.0.2
 
+    * 2017-07-10 f364aeb [release] Version bumped to 0.0.2 (vst@vsthost.com)
+    * 2017-07-08 65220e7 [chore] Adopting changes on API authentication (vst@vsthost.com)
+    * 2017-05-16 7c02193 [chore] Suppressing marshalling messages during httr::content (vst@vsthost.com)
+    * 2017-04-05 235f9ce [feature] Added uploadOHLC and getSymbolsOfInterest functions (vst@vsthost.com)
+    * 2017-04-05 81b3819 [feature] Added `postResource` method (vst@vsthost.com)
+    * 2017-03-20 201eb40 [feature] Added account retrieval queries (by ID or name) (vst@vsthost.com)
+    * 2017-03-19 460d829 [chore] Development version bumped to 0.0.1.9000 (vst@vsthost.com)
+
+VERS: 2017-03-19 c9a78f1 0.0.1 (vst@vsthost.com)
+
+    * 2017-03-19 b39a8d1 Merge branch 'release/0.0.1' (vst@vsthost.com)
+    * 2017-03-19 e1f5b3d [release] Change log updated (vst@vsthost.com)
+    * 2017-03-19 c46cea8 [release] Added README file (vst@vsthost.com)
     * 2017-03-19 811a0fc [release] Version bumped to 0.0.1 (vst@vsthost.com)
     * 2017-03-19 9e9caf2 [chore] Getting ready for the initial release (vst@vsthost.com)
     * 2017-03-16 0b853ae [feature] Added query functions for artifacts and ledgers (vst@vsthost.com)
