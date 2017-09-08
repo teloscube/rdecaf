@@ -66,10 +66,10 @@ getLedger <- function (artifact, accounts, start=NULL, end=NULL, type="commitmen
     }
 
     ## Construct the query params:
-    params <- list(r=artifact, start=start, end=end, dtype=type)
+    params <- list(artifact=artifact, datesmin=start, datesmax=end, datetype=type)
 
     ## Define accounts param:
-    accountParams <- do.call(c, lapply(accounts, function (x) list(a=x)))
+    accountParams <- do.call(c, lapply(accounts, function (x) list(accounts=x)))
 
     ## Add accounts param to params:
     params <- c(params, accountParams)
@@ -78,7 +78,12 @@ getLedger <- function (artifact, accounts, start=NULL, end=NULL, type="commitmen
     ledgerData <- getResource("ledgers", params=params, session=session)
 
     ## Tabulate the ledger:
-    ledger <- do.call(rbind, lapply(ledgerData$items, as.data.frame))
+    ledger <- as.data.frame(do.call(rbind, ledgerData$entries))
+
+    ## Check:
+    if(NROW(ledger) == 0) {
+        return(NULL)
+    }
 
     ## Add date column:
     ledger$date <- ledger[, ledgerData$datetype]
