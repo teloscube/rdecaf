@@ -185,7 +185,6 @@ patchResource <- function (..., params=list(), payload=NULL, session=NULL) {
 ##'
 ##' @param ... URL path segments.
 ##' @param params Query parameters.
-##' @param payload The payload to be send.
 ##' @param session Session information.
 ##' @return Parsed R object for the response.
 ##'
