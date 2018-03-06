@@ -4,22 +4,19 @@
 \alias{getSession}
 \title{Gets or creates a session.}
 \usage{
-getSession(location = NULL, token = NULL, username = NULL,
-  password = NULL, profile = "default", config = .defaultConfigFilepath,
-  reset = FALSE)
+getSession(location = NULL, apikey = NULL, apisecret = NULL,
+  profile = "default", config = .defaultConfigFilepath, reset = FALSE)
 }
 \arguments{
-\item{location}{The API Base URL.}
+\item{location}{Location of the remote API base endpoint.}
 
-\item{token}{The API authentication token.}
+\item{apikey}{API Key.}
 
-\item{username}{The API authentication credential for username.}
-
-\item{password}{The API authentication credential for password.}
+\item{apisecret}{API Secret.}
 
 \item{profile}{Profile name.}
 
-\item{config}{The file path of the configuration.}
+\item{config}{Configuration file path.}
 
 \item{reset}{Indicates if we are resetting the session first.}
 }

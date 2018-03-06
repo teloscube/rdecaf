@@ -2,10 +2,10 @@
 devtools::load_all(".")
 
 ## Create a session:
-makeSession(profile="localhost", save=TRUE)
+. <- makeSession(profile="localhost", save=TRUE)
 
 ## Get version:
-version <- getResource("version")
+print(getResource("version"))
 
 ## Get USD artifact by symbol:
 USD1 <- getArtifactBySymbol("USD")
@@ -26,7 +26,7 @@ team <- try(getResource("teams", params=list(name="TEAM X", page_size=-1))[[1]],
 ## Do we have the team?
 if (class(team) == "try-error") {
     ## Nope, create it:
-    team <- postResource("teams", payload=jsonlite::toJSON(list(name="TEAM X", members=I(2)), auto_unbox=TRUE))
+    team <- postResource("teams", payload=jsonlite::toJSON(list(name="TEAM X", members=I(1)), auto_unbox=TRUE))
 }
 
 ## Change the name:
