@@ -1,5 +1,16 @@
-VERS: 2017-07-10 ------- release/0.0.2
+VERS: 2018-03-06 ------- release/0.0.3
 
+    * 2018-03-06 1799561 [release] Version bumped to 0.0.3 (vst@vsthost.com)
+    * 2017-09-08 2f25299 [fix] Packaging and documentation fixes (vst@vsthost.com)
+    * 2017-09-08 9db23e8 [chore] Updating sandbox (vst@vsthost.com)
+    * 2017-09-08 10604b4 [fix] Fix to getLedger to adopt API changes (vst@vsthost.com)
+    * 2017-09-08 a16089d [improve] Added PUT, PATCH and DELETE resources (vst@vsthost.com)
+    * 2017-07-10 9d942a4 [chore] Development version bumped to 0.0.2.9000 (vst@vsthost.com)
+
+VERS: 2017-07-10 e91e33a 0.0.2 (vst@vsthost.com)
+
+    * 2017-07-10 3b0040d Merge branch 'release/0.0.2' (vst@vsthost.com)
+    * 2017-07-10 72a03ae [release] Change log updated (vst@vsthost.com)
     * 2017-07-10 f364aeb [release] Version bumped to 0.0.2 (vst@vsthost.com)
     * 2017-07-08 65220e7 [chore] Adopting changes on API authentication (vst@vsthost.com)
     * 2017-05-16 7c02193 [chore] Suppressing marshalling messages during httr::content (vst@vsthost.com)
