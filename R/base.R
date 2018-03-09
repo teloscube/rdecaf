@@ -1,5 +1,5 @@
 .authorizationHeader <- function (session) {
-    paste0("APIKey ", session$apikey, ":", session$apisecret)
+    paste0("KEY ", session$apikey, ":", session$apisecret)
 }
 
 ##' Retrieve a resource from DECAF API.
