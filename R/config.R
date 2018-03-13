@@ -64,7 +64,7 @@ readProfile <- function (name="default", filepath=.defaultConfigFilepath) {
     }
 
     ## Define required fields in the profile:
-    required <- c("location", "username", "password")
+    required <- c("location", "apikey", "apisecret")
 
     ## Check if profile is complete:
     if (!all(required %in% names(profile))) {

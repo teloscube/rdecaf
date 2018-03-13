@@ -1,3 +1,7 @@
+.authorizationHeader <- function (session) {
+    paste0("KEY ", session$apikey, ":", session$apisecret)
+}
+
 ##' Retrieve a resource from DECAF API.
 ##'
 ##' @param ... URL path segments.
@@ -28,7 +32,7 @@ getResource <- function (..., params=list(), session=NULL) {
     url <- httr::build_url(url)
 
     ## Get the resource:
-    response <- httr::GET(url, httr::add_headers(Authorization=paste("Token", session$token)))
+    response <- httr::GET(url, httr::add_headers(Authorization=.authorizationHeader(session)))
 
     ## Get the status:
     status <- response$status_code
@@ -74,7 +78,7 @@ postResource <- function (..., params=list(), payload=NULL, session=NULL) {
     url <- httr::build_url(url)
 
     ## Post the resource:
-    response <- httr::POST(url, httr::add_headers(Authorization=paste("Token", session$token), "Content-Type"="application/json"), body=payload)
+    response <- httr::POST(url, httr::add_headers(Authorization=.authorizationHeader(session), "Content-Type"="application/json"), body=payload)
 
     ## Get the status:
     status <- response$status_code
@@ -120,7 +124,7 @@ putResource <- function (..., params=list(), payload=NULL, session=NULL) {
     url <- httr::build_url(url)
 
     ## Put the resource:
-    response <- httr::PUT(url, httr::add_headers(Authorization=paste("Token", session$token), "Content-Type"="application/json"), body=payload)
+    response <- httr::PUT(url, httr::add_headers(Authorization=.authorizationHeader(session), "Content-Type"="application/json"), body=payload)
 
     ## Get the status:
     status <- response$status_code
@@ -166,7 +170,7 @@ patchResource <- function (..., params=list(), payload=NULL, session=NULL) {
     url <- httr::build_url(url)
 
     ## Patch the resource:
-    response <- httr::PATCH(url, httr::add_headers(Authorization=paste("Token", session$token), "Content-Type"="application/json"), body=payload)
+    response <- httr::PATCH(url, httr::add_headers(Authorization=.authorizationHeader(session), "Content-Type"="application/json"), body=payload)
 
     ## Get the status:
     status <- response$status_code
@@ -211,7 +215,7 @@ deleteResource <- function (..., params=list(), session=NULL) {
     url <- httr::build_url(url)
 
     ## Delete the resource:
-    response <- httr::DELETE(url, httr::add_headers(Authorization=paste("Token", session$token), "Content-Type"="application/json"))
+    response <- httr::DELETE(url, httr::add_headers(Authorization=.authorizationHeader(session), "Content-Type"="application/json"))
 
     ## Get the status:
     status <- response$status_code
