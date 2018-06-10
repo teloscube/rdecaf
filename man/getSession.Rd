@@ -5,7 +5,8 @@
 \title{Gets or creates a session.}
 \usage{
 getSession(location = NULL, apikey = NULL, apisecret = NULL,
-  profile = "default", config = .defaultConfigFilepath, reset = FALSE)
+  token = NULL, profile = "default", config = .defaultConfigFilepath,
+  reset = FALSE)
 }
 \arguments{
 \item{location}{Location of the remote API base endpoint.}
@@ -13,6 +14,8 @@ getSession(location = NULL, apikey = NULL, apisecret = NULL,
 \item{apikey}{API Key.}
 
 \item{apisecret}{API Secret.}
+
+\item{token}{Authentication token.}
 
 \item{profile}{Profile name.}
 

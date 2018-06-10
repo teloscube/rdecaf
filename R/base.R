@@ -1,5 +1,18 @@
 .authorizationHeader <- function (session) {
-    paste0("KEY ", session$apikey, ":", session$apisecret)
+    ## There are two possibilies about the authorization type:
+    ##
+    ## 1. Session contains the "token" property in which case we will
+    ## attempt using it.
+    ##
+    ## 2. Session contains both the apikey and apisecret which we can
+    ## fallback to.
+    if (!is.null(session$token) && !is.na(session$token)) {
+        paste0("TOKEN ", session$token)
+    }
+    else {
+        ## TODO: Ensure that we have both the apikey and apisecret.
+        paste0("KEY ", session$apikey, ":", session$apisecret)
+    }
 }
 
 ##' Retrieve a resource from DECAF API.
