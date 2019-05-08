@@ -1,5 +1,15 @@
-VERS: 2018-03-13 ------- release/0.0.4
+VERS: 2019-05-08 ------- release/0.0.5
 
+    * 2019-05-08 6fd78f8 [improve] Bump version to 0.0.5 (vst@vsthost.com)
+    * 2019-05-08 be3c28c [docs] Missing Rd files (vst@vsthost.com)
+    * 2019-05-08 e6b888e [improve] Add multipart form (for file uploads) (vst@vsthost.com)
+    * 2018-06-10 cce93f9 [improve] Allow TOKEN Auth in addition to KEY Auth (vst@vsthost.com)
+    * 2018-03-13 f47d61b [chore] Development version bumped to 0.0.4.9000 (vst@vsthost.com)
+
+VERS: 2018-03-13 2d0f3be 0.0.4 (vst@vsthost.com)
+
+    * 2018-03-13 26d1654 Merge branch 'release/0.0.4' (vst@vsthost.com)
+    * 2018-03-13 f075aea [release] Change log updated (vst@vsthost.com)
     * 2018-03-13 684a250 [release] Version bumped to 0.0.4 (vst@vsthost.com)
     * 2018-03-09 67d5743 [fix] Adapting to the new authorization header key (vst@vsthost.com)
     * 2018-03-06 81e9fb9 [fix] Adapting to new API authentication mechanism (vst@vsthost.com)

@@ -3,13 +3,14 @@
 ##' @param location Location of the remote API base endpoint.
 ##' @param apikey API Key.
 ##' @param apisecret API Secret.
+##' @param token Authentication token.
 ##' @param profile Profile name.
 ##' @param config Configuration file path.
 ##' @param save Indicates if we want to save the session.
 ##' @return A session.
 ##'
 ##' @export
-makeSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile=NULL, config=.defaultConfigFilepath, save=FALSE) {
+makeSession <- function (location=NULL, apikey=NULL, apisecret=NULL, token=NULL, profile=NULL, config=.defaultConfigFilepath, save=FALSE) {
     ## Attempt to get the profile as the base configuration if defined:
     if (!is.null(profile)) {
         ## Get the profile:
@@ -17,7 +18,7 @@ makeSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile=NUL
     }
     else {
         ## Create a dummy profile:
-        profile <- list(location=NULL, apikey=NULL, apisecret=NULL)
+        profile <- list(location=NULL, apikey=NULL, apisecret=NULL, token=NULL)
     }
 
     ## Overlay actual parameters:
@@ -30,10 +31,13 @@ makeSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile=NUL
     if (!is.null(apisecret)) {
         profile$apisecret <- apisecret
     }
+    if (!is.null(token)) {
+        profile$token <- token
+    }
 
-    ## By now we should have both API key and secret defined. If not, stop!
-    if (is.null(profile$apikey) || is.null(profile$apisecret)) {
-        stop("API Key and Secret are not defined.")
+    ## By now we should have both API key and secret OR token defined. If not, stop!
+    if ((is.null(profile$apikey) || is.null(profile$apisecret)) && (is.null(profile$token))) {
+        stop("API Key and Secret OR authentication token are not defined.")
     }
 
     ## Save the session if required:
@@ -51,13 +55,14 @@ makeSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile=NUL
 ##' @param location Location of the remote API base endpoint.
 ##' @param apikey API Key.
 ##' @param apisecret API Secret.
+##' @param token Authentication token.
 ##' @param profile Profile name.
 ##' @param config Configuration file path.
 ##' @param reset Indicates if we are resetting the session first.
 ##' @return Existing or new session.
 ##'
 ##' @export
-getSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile="default", config=.defaultConfigFilepath, reset=FALSE) {
+getSession <- function (location=NULL, apikey=NULL, apisecret=NULL, token=NULL, profile="default", config=.defaultConfigFilepath, reset=FALSE) {
     ## Reset or not?
     if (reset) {
         deleteSession()
@@ -73,7 +78,7 @@ getSession <- function (location=NULL, apikey=NULL, apisecret=NULL, profile="def
     }
     else {
         ## Attempt to create a session:
-        makeSession(location, apikey, apisecret, profile, config)
+        makeSession(location, apikey, apisecret, token, profile, config)
     }
 }
 

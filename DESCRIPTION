@@ -1,10 +1,10 @@
 Package: rdecaf
 Title: DECAF API Client
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: person("Vehbi Sinan", "Tunalioglu", email = "vst@vsthost.com", role = c("aut", "cre"))
 Description: DECAF is a Financial Information Management and Productivity suite. It exposes an API and rdecaf is a client for this.
 Depends: R (>= 3.3.0), httr, jsonlite, readr, plyr
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.0
+RoxygenNote: 6.1.1

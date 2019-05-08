@@ -5,7 +5,8 @@
 \title{Attempts to create a new session with the provided arguments.}
 \usage{
 makeSession(location = NULL, apikey = NULL, apisecret = NULL,
-  profile = NULL, config = .defaultConfigFilepath, save = FALSE)
+  token = NULL, profile = NULL, config = .defaultConfigFilepath,
+  save = FALSE)
 }
 \arguments{
 \item{location}{Location of the remote API base endpoint.}
@@ -13,6 +14,8 @@ makeSession(location = NULL, apikey = NULL, apisecret = NULL,
 \item{apikey}{API Key.}
 
 \item{apisecret}{API Secret.}
+
+\item{token}{Authentication token.}
 
 \item{profile}{Profile name.}
 

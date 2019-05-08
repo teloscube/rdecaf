@@ -1,5 +1,18 @@
 .authorizationHeader <- function (session) {
-    paste0("KEY ", session$apikey, ":", session$apisecret)
+    ## There are two possibilies about the authorization type:
+    ##
+    ## 1. Session contains the "token" property in which case we will
+    ## attempt using it.
+    ##
+    ## 2. Session contains both the apikey and apisecret which we can
+    ## fallback to.
+    if (!is.null(session$token) && !is.na(session$token)) {
+        paste0("TOKEN ", session$token)
+    }
+    else {
+        ## TODO: Ensure that we have both the apikey and apisecret.
+        paste0("KEY ", session$apikey, ":", session$apisecret)
+    }
 }
 
 ##' Retrieve a resource from DECAF API.
@@ -216,6 +229,54 @@ deleteResource <- function (..., params=list(), session=NULL) {
 
     ## Delete the resource:
     response <- httr::DELETE(url, httr::add_headers(Authorization=.authorizationHeader(session), "Content-Type"="application/json"))
+
+    ## Get the status:
+    status <- response$status_code
+
+    ## If the status code is not 200, raise an error:
+    if (status >= 300) {
+        stop(sprintf("%s returned a status code of '%d'.\n\n  Details provided by the API are:\n\n%s", url, status, httr::content(response, as="text")))
+    }
+
+    ## Return:
+    httr::content(response)
+}
+
+
+##' Uploads a resource to DECAF API.
+##'
+##' This is a variant of postResource method.
+##'
+##' @param ... URL path segments.
+##' @param params Query parameters.
+##' @param payload The payload to be send.
+##' @param session Session information.
+##' @return Parsed R object for the response.
+##'
+##' @import httr
+##' @import readr
+##' @export
+postMultipart <- function (..., params=list(), payload=NULL, session=NULL) {
+    ## Get or create a session:
+    if (is.null(session)) {
+        session <- readSession()
+    }
+
+    ## Get the base url to start to build the endpoint URL:
+    url <- httr::parse_url(session$location)
+
+    ## Add paths ensuring that path seperator is not duplicated and a
+    ## trailing path seperator is added:
+    url$path <- c(sub("/$", "", gsub("//", "/", c(url$path, ...))), "/")
+
+    ## Add params:
+    url$query <- params
+
+    ## Construct the endpoint URL:
+    url <- httr::build_url(url)
+
+    ## Post the resource:
+    response <- httr::POST(url, httr::add_headers(Authorization=.authorizationHeader(session)), body=payload, encode="multipart")
 
     ## Get the status:
     status <- response$status_code
