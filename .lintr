@@ -1,0 +1,9 @@
+linters: with_defaults()
+exclusions: list(
+        "R/depr_base.R",
+        "R/depr_config.R",
+        "R/depr_prices.R",
+        "R/depr_queries.R",
+        "R/depr_session.R",
+        "R/depr_utils.R"
+    )
