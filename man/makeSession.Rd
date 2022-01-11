@@ -4,9 +4,15 @@
 \alias{makeSession}
 \title{Attempts to create a new session with the provided arguments.}
 \usage{
-makeSession(location = NULL, apikey = NULL, apisecret = NULL,
-  token = NULL, profile = NULL, config = .defaultConfigFilepath,
-  save = FALSE)
+makeSession(
+  location = NULL,
+  apikey = NULL,
+  apisecret = NULL,
+  token = NULL,
+  profile = NULL,
+  config = .defaultConfigFilepath,
+  save = FALSE
+)
 }
 \arguments{
 \item{location}{Location of the remote API base endpoint.}

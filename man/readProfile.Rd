@@ -13,7 +13,7 @@ readProfile(name = "default", filepath = .defaultConfigFilepath)
 }
 \value{
 The profile if configuration file is read and profile is
-    retrieved successfully, stops with error otherwise.
+retrieved successfully, stops with error otherwise.
 }
 \description{
 Reads a profile from the configuration file and returns it.

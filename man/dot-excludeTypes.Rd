@@ -4,7 +4,9 @@
 \name{.excludeTypes}
 \alias{.excludeTypes}
 \title{Defines a vector of types which we are not interesting in getting OHLC Observations for.}
-\format{An object of class \code{character} of length 9.}
+\format{
+An object of class \code{character} of length 9.
+}
 \usage{
 .excludeTypes
 }

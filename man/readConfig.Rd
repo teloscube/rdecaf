@@ -11,7 +11,7 @@ readConfig(filepath = .defaultConfigFilepath)
 }
 \value{
 Configuration if configuration file is read successfully,
-    stops with error otherwise.
+stops with error otherwise.
 }
 \description{
 Reads and returns the configuration file.

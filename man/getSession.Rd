@@ -4,9 +4,15 @@
 \alias{getSession}
 \title{Gets or creates a session.}
 \usage{
-getSession(location = NULL, apikey = NULL, apisecret = NULL,
-  token = NULL, profile = "default", config = .defaultConfigFilepath,
-  reset = FALSE)
+getSession(
+  location = NULL,
+  apikey = NULL,
+  apisecret = NULL,
+  token = NULL,
+  profile = "default",
+  config = .defaultConfigFilepath,
+  reset = FALSE
+)
 }
 \arguments{
 \item{location}{Location of the remote API base endpoint.}

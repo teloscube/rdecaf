@@ -4,8 +4,14 @@
 \alias{getLedger}
 \title{Returns the ledger for the given query.}
 \usage{
-getLedger(artifact, accounts, start = NULL, end = NULL,
-  type = "commitment", session = NULL)
+getLedger(
+  artifact,
+  accounts,
+  start = NULL,
+  end = NULL,
+  type = "commitment",
+  session = NULL
+)
 }
 \arguments{
 \item{artifact}{The artifact which we want the ledger for.}

@@ -11,7 +11,7 @@ readProfiles(filepath = .defaultConfigFilepath)
 }
 \value{
 List of profiles if configuration file is read successfully,
-    stops with error otherwise.
+stops with error otherwise.
 }
 \description{
 Reads profiles from the configuration file and returns them.
