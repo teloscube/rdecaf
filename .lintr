@@ -1,4 +1,7 @@
-linters: with_defaults()
+linters: with_defaults(
+        line_length_linter = line_length_linter(120),
+        object_length_linter = NULL
+    )
 exclusions: list(
         "R/depr_base.R",
         "R/depr_config.R",
