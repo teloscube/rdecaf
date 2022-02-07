@@ -10,13 +10,22 @@
 #' The API landscape of DECAF is large and constantly evolving. There are
 #' multiple APIs for a given DECAF Instance:
 #'
-#' 1. DECAF Barista
-#' 2. DECAF Estate
+#' 1. DECAF Estate
+#' 2. DECAF Microlot
 #' 3. DECAF Functions
 #' 4. DECAF Beanbag
+#' 5. DECAF Barista
 #'
-#' This class `DecafClient` is a convenience wrapper of clients for each of
-#' these APIs.
+#' This class `DecafClient` is a convenience wrapper of individual clients for
+#' each of these APIs. However, this class has a property called `bare` that
+#' exposes the underlying HTTP client that can be used for all sorts of API
+#' calls.
+#'
+#' Note that we are making use of
+#' [crul](https://cran.r-project.org/web/packages/crul/index.html) library (not
+#' `curl`) as the underlying HTTP client library. This library is also built
+#' using R6 classes. It is very powerful and provides all low-level
+#' functionality we needed to implement DECAF API Client(s).
 #'
 #' @export
 DecafClient <- R6::R6Class("DecafClient", ## nolint
@@ -75,7 +84,7 @@ DecafClient <- R6::R6Class("DecafClient", ## nolint
         #' @description Prints rudimentary information about the DECAF Instance.
         info = function() {
             cat(sprintf("DECAF Instance Base URL         : %s\n", self$url))
-            cat(sprintf("DECAF Instance Credentials Type : %s\n", private$credentials_type))
+            cat(sprintf("DECAF Instance Credentials Type : %s\n", private$credentials_type()))
         },
 
         #' @description Provides the print function for `DecafClient` object.
