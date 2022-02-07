@@ -1,0 +1,190 @@
+---
+title: "DECAF API Client R Library Tutorial"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+```{r, include = FALSE}
+options(width=100)
+```
+
+## Creating DECAF Client
+
+A DECAF client is an instance of `rdecaf::DecafClient` R6 class:
+
+```{r, include = TRUE}
+client <- rdecaf::DecafClient$new(
+    url = "https://telosinvest.decafhub.com",
+    credentials = list(username = username, password = password)
+)
+```
+
+The `client` value has some members that can be used to query remote
+DECAF API interfaces or get information about the client itself:
+
+```{r}
+names(client)
+```
+
+For example:
+
+```{r}
+client$url
+```
+
+... or:
+
+```{r}
+client$info()
+```
+
+## Bare Client
+
+Using the `bare` client, we can place any kind of API request to any
+DECAF API interface. The `bare` client is an instance of `HttpClient`
+R6 class from the
+[crul](https://cran.r-project.org/web/packages/crul/index.html)
+library. It has all the necessary configuration made by the
+`rdecaf::DecafClient` constructor. We strongly suggest you to check
+the ["crul introduction" R
+Vignette](https://cran.r-project.org/web/packages/crul/vignettes/crul.html)
+and other accompanying `crul` documentation material to learn more
+about it.
+
+To demonstrate the common use pattern, we will request the remote
+DECAF Barista API version information now:
+
+```{r, include = TRUE}
+version_response <- client$bare$get("/api/version/")
+```
+
+The `version_response` value is an instance of `HttpResponse` R6 class
+of [crul](https://cran.r-project.org/web/packages/crul/index.html)
+library:
+
+```{r, include = TRUE}
+class(version_response)
+```
+
+It has quite a few members:
+
+```{r}
+names(version_response)
+```
+
+In the following subsections, we will see some of these members which
+we will end up using in our programs.
+
+### Checking the Status Code
+
+The status code for a successful HTTP request is between `200` and
+`399`. We can check the success code of the response as follows:
+
+```{r}
+version_response$status_code
+```
+
+Also, we can check if the request was successful:
+
+```{r}
+version_response$success()
+```
+
+An undesired case is to attempt to get a non-existing HTTP resource:
+
+```{r}
+client$bare$get("/api/hebele/hubele/")$status_code
+```
+
+```{r}
+client$bare$get("/api/hebele/hubele/")$success()
+```
+
+### Checking the Headers and Content Type
+
+You can retrieve all response headers:
+
+```{r}
+version_response$response_headers
+```
+
+One of them is the content type that you may need:
+
+```{r}
+version_response$response_headers$"content-type"
+```
+
+### Getting the Response Content
+
+`version_response` value carries the response content. But it is
+provided in the raw format. This is normal as it can be of any content
+type including binary data.
+
+```{r}
+version_response$content
+```
+
+`crul` can parse the response content:
+
+```{r}
+version_response$parse()
+```
+
+Note the encoding warning! `curl` did not know which encoding to
+use. `utf-8` is the most common textual encoding DECAF is
+using. Actually, anything other than `utf-8` would be a bug. So, you
+can safely assume `utf-8` encoding when attempting to parse such
+content:
+
+```{r}
+version_response$parse(encoding = "utf-8")
+```
+
+... which would give no encoding warnings.
+
+You can then parse the content into a suitable R data structure:
+
+```{r}
+jsonlite::fromJSON(version_response$parse(encoding = "utf-8"))
+```
+
+### Summary
+
+We can use the following one-liner to consume a remote DECAF API
+endpoint that has a JSON content-type:
+
+```{r}
+jsonlite::fromJSON(client$bare$get("/api/version/")$parse(encoding="utf-8"))
+```
+
+However, this is a too optimistic. What if the request is
+unsuccessful? Let's write a small function that will serve as a
+helper:
+
+```{r}
+getJSON <- function(client, ...) {
+  response <- client$bare$get(...)
+  if (response$success()) {
+	jsonlite::fromJSON(response$parse(encoding = "utf-8"))
+  } else {
+    stop(sprintf("Error while requesting %s. Status code: %s. Error: %s", response$url, response$status_code, response$parse(encoding = "utf-8")))
+  }
+}
+```
+
+Happy path:
+
+```{r}
+getJSON(client, "/api/version/")
+```
+
+Not so happy path:
+
+```{r, error = TRUE}
+getJSON(client, "/api/hebele/hubele/")
+```
+
+... but at least we have better error message that informs us for our
+debugging.
