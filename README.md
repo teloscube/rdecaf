@@ -1,5 +1,9 @@
 # rdecaf: DECAF API Client for R Language
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/teloscube/rdecaf)
+![GitHub contributors](https://img.shields.io/github/contributors/teloscube/rdecaf)
+![GitHub](https://img.shields.io/github/license/teloscube/rdecaf)
+
 *rdecaf* is an R library that provides client functionality to DECAF API suite.
 
 DECAF is a proprietary Financial Portfolio Management, Analytics, Reporting and
