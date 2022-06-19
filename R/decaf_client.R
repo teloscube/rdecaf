@@ -27,6 +27,8 @@
 #' using R6 classes. It is very powerful and provides all low-level
 #' functionality we needed to implement DECAF API Client(s).
 #'
+#' @importFrom crul HttpClient
+#' @importFrom R6 R6Class
 #' @export
 DecafClient <- R6::R6Class("DecafClient", ## nolint
     public = list(
