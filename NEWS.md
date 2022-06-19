@@ -1,22 +1,31 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.1.0"></a>
+## [0.1.0] - 2022-06-20
 ### Chore
-- prefix all source files with depr_
-- update LICENSE
 - review DecafClient implementation
+- update LICENSE
+- prefix all source files with depr_
 - update DESCRIPTION
-- **build:** attend check notice
 - **build:** bump roxygen2 version
-- **dev:** configure linter
+- **build:** integrate git-chglog
+- **build:** attend check notice
 - **dev:** add Nix shell
+- **dev:** configure linter
 - **dev:** add lintr configuration
 - **docs:** revisit the documentation of DecafClient class
 - **docs:** regenerate R documentation files
 - **docs:** start tutorial document
+- **docs:** update README.md
 
 ### Feat
 - add bare DECAF HTTP client
+
+### Pull Requests
+- Merge pull request [#3](https://github.com/teloscube/rdecaf/issues/3) from teloscube/vst/get-ready-for-release
+- Merge pull request [#2](https://github.com/teloscube/rdecaf/issues/2) from teloscube/new-approach
 
 
 <a name="0.0.5"></a>
@@ -34,7 +43,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2017-03-19
 
-[Unreleased]: https://github.com/teloscube/rdecaf/compare/0.0.5...HEAD
+[Unreleased]: https://github.com/teloscube/rdecaf/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/teloscube/rdecaf/compare/0.0.5...0.1.0
 [0.0.5]: https://github.com/teloscube/rdecaf/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/teloscube/rdecaf/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/teloscube/rdecaf/compare/0.0.2...0.0.3
