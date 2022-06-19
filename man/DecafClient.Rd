@@ -7,21 +7,30 @@
 Instances of this class can be used for conveniently issuing
 HTTP requests to various APIs of remote DECAF Instances.
 
-A DECAF Instance exposes its capabilities and the data it hosts over APIs
-which can be then consumed by itself (to enhance its feature-set) or 3rd
-parties (to integrate with 3rd party systems and/or data).
+A DECAF Instance exposes its capabilities and data it hosts over APIs which
+can be then consumed by itself (to enhance its feature-set) or third-party
+systems.
 
 The API landscape of DECAF is large and constantly evolving. There are
 multiple APIs for a given DECAF Instance:
 \enumerate{
 \item DECAF Barista
 \item DECAF Estate
+\item DECAF Microlot
 \item DECAF Functions
 \item DECAF Beanbag
 }
 
-This class \code{DecafClient} is a convenience wrapper of clients for each of
-these APIs.
+This class exposes a property called \code{bare} that provides the underlying HTTP
+client that can be used for all sorts of DECAF API calls. It is indeed an
+instance of \code{crul::HttpClient} class of
+\href{https://cran.r-project.org/web/packages/crul/index.html}{crul} library (not
+\code{curl}). \code{crul} library is built using R6 classes. It is very powerful and
+provides all low-level functionality we needed to implement individual DECAF
+API Client(s).
+
+We are going to improve the functionality this class provides by providing
+higher-level clients for individual DECAF APIs.
 }
 \examples{
 
@@ -66,15 +75,15 @@ bare HTTP client.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{DecafClient$new()}}
-\item \href{#method-info}{\code{DecafClient$info()}}
-\item \href{#method-print}{\code{DecafClient$print()}}
-\item \href{#method-clone}{\code{DecafClient$clone()}}
+\item \href{#method-DecafClient-new}{\code{DecafClient$new()}}
+\item \href{#method-DecafClient-info}{\code{DecafClient$info()}}
+\item \href{#method-DecafClient-print}{\code{DecafClient$print()}}
+\item \href{#method-DecafClient-clone}{\code{DecafClient$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-DecafClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-DecafClient-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a DECAF client.
 \subsection{Usage}{
@@ -128,8 +137,8 @@ client <- rdecaf::DecafClient$new(
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-info"></a>}}
-\if{latex}{\out{\hypertarget{method-info}{}}}
+\if{html}{\out{<a id="method-DecafClient-info"></a>}}
+\if{latex}{\out{\hypertarget{method-DecafClient-info}{}}}
 \subsection{Method \code{info()}}{
 Prints rudimentary information about the DECAF Instance.
 \subsection{Usage}{
@@ -138,8 +147,8 @@ Prints rudimentary information about the DECAF Instance.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-DecafClient-print"></a>}}
+\if{latex}{\out{\hypertarget{method-DecafClient-print}{}}}
 \subsection{Method \code{print()}}{
 Provides the print function for \code{DecafClient} object.
 \subsection{Usage}{
@@ -148,8 +157,8 @@ Provides the print function for \code{DecafClient} object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-DecafClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-DecafClient-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -3,29 +3,29 @@
 #' @description Instances of this class can be used for conveniently issuing
 #' HTTP requests to various APIs of remote DECAF Instances.
 #'
-#' A DECAF Instance exposes its capabilities and the data it hosts over APIs
-#' which can be then consumed by itself (to enhance its feature-set) or 3rd
-#' parties (to integrate with 3rd party systems and/or data).
+#' A DECAF Instance exposes its capabilities and data it hosts over APIs which
+#' can be then consumed by itself (to enhance its feature-set) or third-party
+#' systems.
 #'
 #' The API landscape of DECAF is large and constantly evolving. There are
 #' multiple APIs for a given DECAF Instance:
 #'
-#' 1. DECAF Estate
-#' 2. DECAF Microlot
-#' 3. DECAF Functions
-#' 4. DECAF Beanbag
-#' 5. DECAF Barista
+#' 1. DECAF Barista
+#' 2. DECAF Estate
+#' 3. DECAF Microlot
+#' 4. DECAF Functions
+#' 5. DECAF Beanbag
 #'
-#' This class `DecafClient` is a convenience wrapper of individual clients for
-#' each of these APIs. However, this class has a property called `bare` that
-#' exposes the underlying HTTP client that can be used for all sorts of API
-#' calls.
-#'
-#' Note that we are making use of
+#' This class exposes a property called `bare` that provides the underlying HTTP
+#' client that can be used for all sorts of DECAF API calls. It is indeed an
+#' instance of `crul::HttpClient` class of
 #' [crul](https://cran.r-project.org/web/packages/crul/index.html) library (not
-#' `curl`) as the underlying HTTP client library. This library is also built
-#' using R6 classes. It is very powerful and provides all low-level
-#' functionality we needed to implement DECAF API Client(s).
+#' `curl`). `crul` library is built using R6 classes. It is very powerful and
+#' provides all low-level functionality we needed to implement individual DECAF
+#' API Client(s).
+#'
+#' We are going to improve the functionality this class provides by providing
+#' higher-level clients for individual DECAF APIs.
 #'
 #' @importFrom crul HttpClient
 #' @importFrom R6 R6Class
