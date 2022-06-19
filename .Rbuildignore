@@ -1,3 +1,4 @@
+.chglog
 .lintr
 ^.*\.Rproj$
 ^\.Rproj\.user$

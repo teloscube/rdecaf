@@ -23,5 +23,7 @@ in
 mkShell {
   buildInputs = [
     thisR
+
+    pkgs.git-chglog
   ];
 }
