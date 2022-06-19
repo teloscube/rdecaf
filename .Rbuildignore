@@ -1,3 +1,5 @@
+.lintr
 ^.*\.Rproj$
 ^\.Rproj\.user$
+shell.nix
 var/
